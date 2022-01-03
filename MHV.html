@@ -1,0 +1,203 @@
+<h1>두 공이 만나면 그 자리에 멈춥니다!</h1>
+<h2>화면에 대고 마우스 휠을 움직이면 확대/축소가 됩니다.</h2>
+<h2>shift를 누르고 마우스 좌클릭을 하여 화면을 움직입니다.</h2>
+<h2>우클릭을 하면 화면을 회전할 수 있습니다.</h2>
+<div id="glowscript" class="glowscript">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link
+    type="text/css"
+    href="https://www.glowscript.org/css/redmond/2.1/jquery-ui.custom.css"
+    rel="stylesheet"
+  />
+  <link
+    type="text/css"
+    href="https://www.glowscript.org/css/ide.css"
+    rel="stylesheet"
+  />
+  <script
+    type="text/javascript"
+    src="https://www.glowscript.org/lib/jquery/2.1/jquery.min.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="https://www.glowscript.org/lib/jquery/2.1/jquery-ui.custom.min.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="https://www.glowscript.org/package/glow.3.2.min.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="https://www.glowscript.org/package/RSrun.3.2.min.js"
+  ></script>
+  <script type="text/javascript">
+    // START JAVASCRIPT
+    (function () {
+      var ρσ_modules = {};
+      ρσ_modules.pythonize = {};
+
+      (function () {
+        function strings() {
+          var string_funcs, exclude, name;
+          string_funcs = set(
+            "capitalize strip lstrip rstrip islower isupper isspace lower upper swapcase center count endswith startswith find rfind index rindex format join ljust rjust partition rpartition replace split rsplit splitlines zfill".split(
+              " "
+            )
+          );
+          if (!arguments.length) {
+            exclude = (function () {
+              var s = ρσ_set();
+              s.jsset.add("split");
+              s.jsset.add("replace");
+              return s;
+            })();
+          } else if (arguments[0]) {
+            exclude = Array.prototype.slice.call(arguments);
+          } else {
+            exclude = null;
+          }
+          if (exclude) {
+            string_funcs = string_funcs.difference(set(exclude));
+          }
+          var ρσ_Iter0 = string_funcs;
+          ρσ_Iter0 =
+            typeof ρσ_Iter0[Symbol.iterator] === "function"
+              ? ρσ_Iter0 instanceof Map
+                ? ρσ_Iter0.keys()
+                : ρσ_Iter0
+              : Object.keys(ρσ_Iter0);
+          for (var ρσ_Index0 of ρσ_Iter0) {
+            name = ρσ_Index0;
+            (ρσ_expr_temp = String.prototype)[
+              typeof name === "number" && name < 0
+                ? ρσ_expr_temp.length + name
+                : name
+            ] = (ρσ_expr_temp = ρσ_str.prototype)[
+              typeof name === "number" && name < 0
+                ? ρσ_expr_temp.length + name
+                : name
+            ];
+          }
+        }
+        if (!strings.__module__)
+          Object.defineProperties(strings, {
+            __module__: { value: "pythonize" },
+          });
+
+        ρσ_modules.pythonize.strings = strings;
+      })();
+      async function __main__() {
+        "use strict";
+        var display = canvas;
+        var scene = canvas();
+
+        var version,
+          print,
+          arange,
+          __name__,
+          type,
+          ρσ_ls,
+          size,
+          g,
+          t,
+          dt,
+          v_0,
+          theta,
+          L,
+          H,
+          bullet,
+          monkey,
+          i;
+        version = ρσ_list_decorate(["3.2", "glowscript"]);
+        Array.prototype["+"] = function (r) {
+          return this.concat(r);
+        };
+        Array.prototype["*"] = function (r) {
+          return __array_times_number(this, r);
+        };
+        window.__GSlang = "vpython";
+        print = GSprint;
+        arange = range;
+        __name__ = "__main__";
+        type = pytype;
+        var strings = ρσ_modules.pythonize.strings;
+
+        strings();
+        ("3");
+        for (var ρσ_Index1 = 10; ρσ_Index1["<"](100); ρσ_Index1++) {
+          i = ρσ_Index1;
+          ("4");
+          size = 0.2;
+          ("5");
+          g = (9.81)["-u"]();
+          ("6");
+          t = 0;
+          ("7");
+          dt = 4e-4;
+          ("9");
+          v_0 = i;
+          ("10");
+          theta = 26;
+          ("11");
+          L = 20;
+          ("12");
+          H = L["*"](tan(theta));
+          ("14");
+          bullet = ρσ_interpolate_kwargs.call(this, sphere, [
+            ρσ_desugar_kwargs({ radius: size, color: color.white }),
+          ]);
+          ("15");
+          bullet.pos = vector(L["-u"]()["/"](2), 0, 0);
+          ("17");
+          bullet.v = vector(v_0["*"](cos(theta)), v_0["*"](sin(theta)), 0);
+          ("19");
+          monkey = ρσ_interpolate_kwargs.call(this, sphere, [
+            ρσ_desugar_kwargs({ radius: size, color: color.white }),
+          ]);
+          ("20");
+          monkey.pos = vector(L["/"](2), H, 0);
+          ("22");
+          monkey.v = vector(0, 0, 0);
+          ("24");
+          while (1) {
+            ("25");
+            await rate((1)["/"](dt));
+            ("26");
+            t = t["+"](dt);
+            ("28");
+            bullet.pos = bullet.pos["+"](bullet.v["*"](dt));
+            ("29");
+            bullet.v = bullet.v["+"](vector(0, g["*"](dt), 0));
+            ("31");
+            monkey.pos = monkey.pos["+"](monkey.v["*"](dt));
+            ("32");
+            monkey.v = monkey.v["+"](vector(0, g["*"](dt), 0));
+            ("34");
+            if (
+              bullet.pos.x["-"](monkey.pos.x)[">="]((0.1)["-u"]()) &&
+              bullet.pos.x["-"](monkey.pos.x)["<="](0.1)
+            ) {
+              ("35");
+              break;
+            }
+          }
+        }
+      }
+      if (!__main__.__module__)
+        Object.defineProperties(__main__, {
+          __module__: { value: null },
+        });
+
+      $(function () {
+        window.__context = {
+          glowscript_container: $("#glowscript").removeAttr("id"),
+        };
+        __main__();
+      });
+    })();
+    // END JAVASCRIPT
+
+    //--><!]]>
+  </script>
+</div>
+<a href="main.html"> <button>뒤로가기</button> </a>
